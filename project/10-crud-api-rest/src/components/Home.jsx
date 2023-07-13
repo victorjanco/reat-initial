@@ -58,11 +58,11 @@ function Home() {
                                 {
                                     products.map((product,i)=>{
                                         <tr key={product.productId}>
-                                            <th>{(i+1)}</th>
-                                            <th>{product.name}</th>
-                                            <th>${ new Intl.NumberFormat('es-mx').format(product.price)}</th>
-                                            <th>{product.stock}</th>
-                                            <th>gggg</th>
+                                            <td>{(i+1)}</td>
+                                            <td>{product.name}</td>
+                                            <td>${ new Intl.NumberFormat('es-mx').format(product.price)}</td>
+                                            <td>{product.stock}</td>
+                                            <td>gggg</td>
                                         </tr>
                                     })
                                 }
