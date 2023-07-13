@@ -22,12 +22,21 @@ function Home() {
     },[])
     
     const getProducts = async () => {
-        // const result =  await fetch(url_all)
-        // const result =  await fetch("http://localhost:8090/platzi-market/api/products/all")
-        const result =  await axios.get("http://localhost:8090/platzi-market/api/products/all")
-        // const productos = await result.json
-        setProducts(result.data)
-        // console.log(url_all)
+        // // const result =  await fetch(url_all)
+        // // const result =  await fetch("http://localhost:8090/platzi-market/api/products/all")
+        // const result =  await axios.get("http://localhost:8090/platzi-market/api/products/all")
+        // // const productos = await result.json
+        // setProducts(result.data)
+        // // console.log(url_all)
+
+        try {
+            const response = await fetch('http://localhost:8090/platzi-market/api/products/all'); // Replace with your API endpoint
+            const jsonData = await response.json();
+            setProducts(jsonData);
+            console.log(jsonData);
+          } catch (error) {
+            console.error('Error fetching data:', error);
+          }
     }
   return (
     <div className='App'>
@@ -54,17 +63,17 @@ function Home() {
                                     <th>OPCIONES</th>
                                 </tr>
                             </thead>
-                            <tbody className='table-group-divider'>
+                            <tbody>
                                 {
-                                    products.map((product,i)=>{
-                                        <tr key={product.productId}>
+                                    products.map((item,i) => (
+                                        <tr key={item.productId}>
                                             <td>{(i+1)}</td>
-                                            <td>{product.name}</td>
-                                            <td>${ new Intl.NumberFormat('es-mx').format(product.price)}</td>
-                                            <td>{product.stock}</td>
+                                            <td>{item.name}</td>
+                                            <td>${ new Intl.NumberFormat('es-mx').format(item.price)}</td>
+                                            <td>{item.stock}</td>
                                             <td>gggg</td>
                                         </tr>
-                                    })
+                                    ))
                                 }
                             </tbody>
                         </table>
